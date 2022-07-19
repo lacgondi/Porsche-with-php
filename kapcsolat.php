@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
           <div class="col--12 mb-3">
             <label for="phoneNum">Telefonszám</label>
             <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555">
-              <input type="text" class="form-control <?php echo $phoneNumErr ? 'is-invalid' : null; ?>" id="phoneNum" placeholder="Telefonszám" name="phoneNum">
+              <input type="text" class="form-control <?php echo $phoneNumErr ? 'is-invalid' : null; ?>" id="phoneNum" name="phoneNum" placeholder="Telefonszám">
             </span>
             <div class="invalid-feedback" style="width: 100%;"><?php echo $phoneNumErr; ?></div>
           </div>
@@ -129,25 +129,25 @@ if (isset($_POST['submit'])) {
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="cardName">Kártyán lévő név</label>
-              <input type="text" class="form-control <?php echo $cardNameErr ? 'is-invalid' : null; ?>" id="cardName" placeholder="" name="cardName">
+              <input type="text" class="form-control <?php echo $cardNameErr ? 'is-invalid' : null; ?>" id="cardName" name="cardName" placeholder="">
               <small class="text-muted">Teljes név a kártyán</small>
               <div class="invalid-feedback">Írja be a kártyán lévő nevet.</div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="cardNum">Kártyaszám</label>
-              <input type="text" class="form-control <?php echo $cardNumErr ? 'is-invalid' : null; ?>" id="cardNum" placeholder="" name="cardNum">
+              <input type="text" class="form-control <?php echo $cardNumErr ? 'is-invalid' : null; ?>" id="cardNum" name="cardNum" placeholder="">
               <div class="invalid-feedback"><?php echo $cardNumErr; ?></div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="cardExpire">Lejárati dátum</label>
-              <input type="text" class="form-control <?php echo $cardExpireErr ? 'is-invalid' : null; ?>" id="cardExpire" placeholder="" name="cardExpire">
+              <input type="text" class="form-control <?php echo $cardExpireErr ? 'is-invalid' : null; ?>" id="cardExpire" name="cardExpire" placeholder="">
               <div class="invalid-feedback"><?php echo $cardExpireErr; ?></div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="cardCCV">Biztonsági kód</label>
-              <input type="text" class="form-control <?php echo $cardCCVErr ? 'is-invalid' : null; ?>" name="cardCCV" id="cvv" placeholder="">
+              <input type="text" class="form-control <?php echo $cardCCVErr ? 'is-invalid' : null; ?>" id="cardCCV" name="cardCCV" placeholder="">
               <div class="invalid-feedback"><?php echo $cardCCVErr; ?></div>
             </div>
           </div>
