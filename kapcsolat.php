@@ -9,47 +9,47 @@ if (isset($_POST['submit'])) {
   if (empty($firstName)) {
     $firstNameErr = "First name is required";
   } else {
-    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
+    $firstName = $_POST["firstName"];
   }
   if (empty($lastName)) {
     $lastNameErr = "Last name is required";
   } else {
-    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+    $lastName = $_POST["lastName"];;
   }
   if (empty($phoneNum)) {
-    $phoneNumErr = "Cell number is required";
+    $phoneNumErr = "Phone number is required";
   } else {
-    $phoneNum = filter_input(INPUT_POST, 'phoneNum', FILTER_SANITIZE_SPECIAL_CHARS);
+    $phoneNum = $_POST["phoneNum"];
   }
   if (empty($email)) {
     $emailErr = "Email is required";
   } else {
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $email = $_POST["email"];
   }
   if (empty($car)) {
     $carErr = "Please choose a car";
   } else {
-    $car = filter_input(INPUT_POST, 'car', FILTER_SANITIZE_SPECIAL_CHARS);
+    $car = $_POST["car"];
   }
   if (empty($cardName)) {
     $cardNameErr = "Name on card is required";
   } else {
-    $cardName = filter_input(INPUT_POST, 'cardName', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cardName = $_POST["cardName"];
   }
   if (empty($cardNum)) {
     $cardNumErr = "Card number is required";
   } else {
-    $cardNum = filter_input(INPUT_POST, 'cardNum', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cardNum = $_POST["cardNum"];
   }
   if (empty($cardExpire)) {
-    $cardExpireErr = "cardExpire date is required";
+    $cardExpireErr = "Card expiry date is required";
   } else {
-    $cardExpire = filter_input(INPUT_POST, 'cardExpire', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cardExpire = $_POST["cardExpire"];
   }
   if (empty($cardCCV)) {
     $cardCCVErr = "cardCCV is required";
   } else {
-    $cardCCV = filter_input(INPUT_POST, 'cardCCV', FILTER_SANITIZE_SPECIAL_CHARS);
+    $cardCCV = $_POST["cardCCV"];
   }
 
   if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
