@@ -17,6 +17,11 @@ $catArr = ['Porsche 911', 'Porsche 718', 'Porsche Panamera', 'Porsche terepj√°r√
                         <p class="mt-3">There are no cars for sale</p>
                     <?php endif; ?>
                     <?php foreach ($output as $item) : ?>
+                        <!-- <php if ($item['index'] % 4 == 0 || $item['index'] == 1) : ?>
+                            <div class="row">
+                                <h3 class="h3"><php echo $catArr[$item['index']]; ?><h3>
+                            </div>
+                        <php endif; ?> -->
                         <div class="col-md-3 col-sm-6" id="product_card">
                             <div class="product-grid9">
                                 <div class="product-image9">
