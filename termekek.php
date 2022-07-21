@@ -23,11 +23,6 @@ $catArr = [
             <h3 class="h3"><?php echo $catArr[$output[$i]['type']]; ?><h3>
                     <div class="row">
                     <?php endif; ?>
-                    <!-- <php if ($output[$i]['index'] % 4 == 0 || $output[$i]['index'] == 1) : ?>
-                            <div class="row">
-                                <h3 class="h3"><php echo $catArr[$output[$i]['index']]; ?><h3>
-                            </div>
-                        <php endif; ?> -->
                     <div class="col-md-3 col-sm-6" id="product_card">
                         <div class="product-grid9">
                             <div class="product-image9">
