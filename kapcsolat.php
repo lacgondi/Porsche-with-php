@@ -1,6 +1,5 @@
 <?php include('inc/header.php') ?>
 
-<<<<<<< HEAD
 <?php
 $sql = 'SELECT * FROM cars';
 $result = mysqli_query($connect, $sql);
@@ -53,19 +52,17 @@ if (isset($_POST['submit'])) {
   //SQL send to database
   if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($paymentMethod)) {
     $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
-    
-if (mysqli_query($connect, $sendSQL)) {
-  // echo 'New record added successfully';
-} else {
-  echo 'Error' . mysqli_error($connect);
+
+    if (mysqli_query($connect, $sendSQL)) {
+      // echo 'New record added successfully';
+    } else {
+      echo 'Error' . mysqli_error($connect);
     }
-mysqli_close($connect);
+    mysqli_close($connect);
   }
 }
 ?>
 
-=======
->>>>>>> main
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-6 justify-content-center align-self-center">
@@ -75,15 +72,10 @@ mysqli_close($connect);
     </div>
     <div class="col-sm-6">
       <div class="col-md-12 order-md-1">
-<<<<<<< HEAD
         <form action="" class="needs-validation" method="POST">
-=======
-        <form class="needs-validation" novalidate>
->>>>>>> main
           <div class="row">
 
             <div class="col-md-6 mb-3">
-<<<<<<< HEAD
               <label for="firstName" class="form-lable">Keresztnév</label>
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="">
               <?php if (!empty($firstNameErr)) : ?>
@@ -96,25 +88,10 @@ mysqli_close($connect);
               <?php if (!empty($lastNameErr)) : ?>
                 <p class="text-danger"><?php echo $lastNameErr; ?></p>
               <?php endif; ?>
-=======
-              <label for="firstName">Keresztnév</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Adja meg a keresztnevét.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="lastName">Vezetéknév</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Adja meg a vezetéknevét.
-              </div>
->>>>>>> main
             </div>
           </div>
 
           <div class="col--12 mb-3">
-<<<<<<< HEAD
             <label for="phoneNum">Telefonszám</label>
             <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555">
               <input type="text" class="form-control" id="phoneNum" name="phoneNum" placeholder="Telefonszám">
@@ -122,20 +99,10 @@ mysqli_close($connect);
             <?php if (!empty($phoneNumErr)) : ?>
               <p class="text-danger"><?php echo $phoneNumErr; ?></p>
             <?php endif; ?>
-=======
-            <label for="username">Telefonszám</label>
-            <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555"></span>
-            <input type="text" class="form-control" id="bfh-phone" placeholder="Telefonszám" required>
-            <div class="invalid-feedback" style="width: 100%;">
-              Adja meg a telefonszámát.
-            </div>
-
->>>>>>> main
           </div>
 
           <div class="col--12 mb-3">
             <label for="email">E-mail cím</label>
-<<<<<<< HEAD
             <input type="email" class="form-control" id="email" name="email" placeholder="te@pelda.com">
             <?php if (!empty($emailErr)) : ?>
               <p class="text-danger"><?php echo $emailErr; ?></p>
@@ -148,39 +115,11 @@ mysqli_close($connect);
               <?php foreach ($output as $item) : ?>
                 <option><?php echo $item['name']; ?></option>
               <?php endforeach; ?>
-=======
-            <input type="email" class="form-control" id="email" placeholder="te@pelda.com">
-            <div class="invalid-feedback">
-              Adja meg az e-mail címét.
-            </div>
-          </div>
-
-          <div class="col--12 mb-3">
-            <label for="s-product">Kiválasztott termék</label>
-            <select class="form-control">
-              <option>Porsche 911 Carrera S (2019)</option>
-              <option>Porsche 911 Targa 4</option>
-              <option>Porsche 911 Turbo Cabriolet</option>
-              <option>Porsche 911 GT2 RS</option>
-              <option>Porsche 718 Cayman S</option>
-              <option>Porsche 718 Boxster</option>
-              <option>Porsche 718 T Cayman</option>
-              <option>Porsche 718 Boxster GTS</option>
-              <option>Porsche Panamera 4</option>
-              <option>Panamera GTS Sport Turismo</option>
-              <option>Porsche Panamera Turbo Executive</option>
-              <option>Porsche Panamera 4 E-Hybrid</option>
-              <option>Porsche Macan (2019)</option>
-              <option>Porsche Macan S (2019)</option>
-              <option>Porsche Cayanne (2019)</option>
-              <option>Porsche Cayanne E-Hybrid (2019)</option>
->>>>>>> main
             </select>
             <?php if (!empty($carErr)) : ?>
               <p class="text-danger"><?php echo $carErr; ?></p>
             <?php endif; ?>
           </div>
-<<<<<<< HEAD
           <hr class="mb-3">
           <div class="row">
             <div class="col-md-6 col-sm-12 mb-3">
@@ -200,52 +139,6 @@ mysqli_close($connect);
                 <label class="form-check-label" for="paymentMethod">
                   Bankkártya
                 </label>
-=======
-          <hr class="mb-4">
-
-          <h4 class="mb-3">Fizetési mód</h4>
-
-          <div class="d-block my-3">
-            <div class="custom-control custom-radio">
-              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-              <label class="custom-control-label" for="credit">Bankkártya</label>
-            </div>
-            <div class="custom-control custom-radio">
-              <input id="keszpenz" name="paymentMethod" type="radio" class="custom-control-input" required>
-              <label class="custom-control-label" for="keszpenz">Készpénz</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cc-name">Kártyán lévő név</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-              <small class="text-muted">Teljes név a kártyán</small>
-              <div class="invalid-feedback">
-                Írja be a kártyán lévő nevet.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cc-number">Kártyaszám</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" required>
-              <div class="invalid-feedback">
-                Írja be a kártyaszámot.
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cc-expiration">Lejárati dátum</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-              <div class="invalid-feedback">
-                Írja be a lejárati dátumot.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cc-expiration">Biztonsági kód</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-              <div class="invalid-feedback">
-                Írja be a biztonsági kódot.
->>>>>>> main
               </div>
             </div>
           </div>
@@ -257,48 +150,8 @@ mysqli_close($connect);
   </div>
 </div>
 </div>
-
 </div>
-
 <?php include('inc/footer.php') ?>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>
-  window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-
-  (function() {
-    'use strict';
-
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
-<script type="text/javascript">
-  function show_alert() {
-    alert("Köszönjük a rendelését! Hamarosan tájékoztatjuk a termék átvételéről.")
-  };
-</script>
-
-
 </body>
 
 </html>
