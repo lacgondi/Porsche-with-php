@@ -5,66 +5,16 @@ $sql = 'SELECT * FROM cars';
 $result = mysqli_query($connect, $sql);
 $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-$firstName = $lastName = $phoneNum = $email = $car = $cardName = $cardNum = $cardExpire = $cardCCV = '';
-$firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $cardNameErr = $cardNumErr = $cardExpireErr = $cardCCVErr = '';
 
+  // if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
+  //   $sql = "INSERT INTO users (firstName, lastName, phoneNum, email, car, cardName, cardNum, cardExpire, cardCCV) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$cardName', '$cardNum', '$cardExpire', '$cardCCV');";
 
-if (isset($_POST['submit'])) {
-  if (empty($firstName)) {
-    $firstNameErr = "First name is required";
-  } else {
-    $firstName = $_POST["firstName"];
-  }
-  if (empty($lastName)) {
-    $lastNameErr = "Last name is required";
-  } else {
-    $lastName = $_POST["lastName"];;
-  }
-  if (empty($phoneNum)) {
-    $phoneNumErr = "Phone number is required";
-  } else {
-    $phoneNum = $_POST["phoneNum"];
-  }
-  if (empty($email)) {
-    $emailErr = "Email is required";
-  } else {
-    $email = $_POST["email"];
-  }
-  if (empty($car)) {
-    $carErr = "Please choose a car";
-  } else {
-    $car = $_POST["car"];
-  }
-  if (empty($cardName)) {
-    $cardNameErr = "Name on card is required";
-  } else {
-    $cardName = $_POST["cardName"];
-  }
-  if (empty($cardNum)) {
-    $cardNumErr = "Card number is required";
-  } else {
-    $cardNum = $_POST["cardNum"];
-  }
-  if (empty($cardExpire)) {
-    $cardExpireErr = "Card expiry date is required";
-  } else {
-    $cardExpire = $_POST["cardExpire"];
-  }
-  if (empty($cardCCV)) {
-    $cardCCVErr = "cardCCV is required";
-  } else {
-    $cardCCV = $_POST["cardCCV"];
-  }
-
-  if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
-    $sql = "INSERT INTO users (firstName, lastName, phoneNum, email, car, cardName, cardNum, cardExpire, cardCCV) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$cardName', '$cardNum', '$cardExpire', '$cardCCV');";
-
-    if (mysqli_query($connect, $sql)) {
-      header('Location: index.php');
-    } else {
-      echo 'Error: ' . mysqli_error($connect);
-    }
-  }
+  //   if (mysqli_query($connect, $sql)) {
+  //     header('Location: index.php');
+  //   } else {
+  //     echo 'Error: ' . mysqli_error($connect);
+  //   }
+  // }
 }
 
 ?>
