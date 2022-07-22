@@ -8,6 +8,7 @@ $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
 $firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
 
+//Validate form submit
 if (isset($_POST['submit'])) {
   $firstName = $_POST['firstName'];
   $lastName = $_POST['lastName'];
@@ -16,6 +17,7 @@ if (isset($_POST['submit'])) {
   $car = $_POST['car'];
   $paymentMethod = null;
 
+  //Validate form fields being filled
   if (empty($firstName)) {
     $firstNameErr = "First name is required";
   } else {
@@ -46,18 +48,19 @@ if (isset($_POST['submit'])) {
   } else {
     $paymentMethod = filter_input(INPUT_POST, 'paymentMethod', FILTER_SANITIZE_SPECIAL_CHARS);
   }
-}
 
-//SQL send to database
-$sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
-
+  //SQL send to database
+  if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($paymentMethod)) {
+    $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
+    
 if (mysqli_query($connect, $sendSQL)) {
   echo 'New record added successfully';
 } else {
   echo 'Error' . mysqli_error($connect);
-}
-
+    }
 mysqli_close($connect);
+  }
+}
 ?>
 
 <div class="container-fluid">
