@@ -5,17 +5,53 @@ $sql = 'SELECT * FROM cars';
 $result = mysqli_query($connect, $sql);
 $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+$firstName = $lastName = $phoneNum = $email = $car = '';
+$firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = '';
 
-  // if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
-  //   $sql = "INSERT INTO users (firstName, lastName, phoneNum, email, car, cardName, cardNum, cardExpire, cardCCV) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$cardName', '$cardNum', '$cardExpire', '$cardCCV');";
+if (isset($_POST['submit'])) {
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $phoneNum = $_POST['phoneNum'];
+  $email = $_POST['email'];
+  $car = $_POST['car'];
 
-  //   if (mysqli_query($connect, $sql)) {
-  //     header('Location: index.php');
-  //   } else {
-  //     echo 'Error: ' . mysqli_error($connect);
-  //   }
-  // }
+  if (empty($firstName)) {
+    $firstNameErr = "First name is required";
+  } else {
+    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($lastName)) {
+    $lastNameErr = "Last name is required";
+  } else {
+    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($phoneNum)) {
+    $phoneNumErr = "Phone number is required";
+  } else {
+    $phoneNum = filter_input(INPUT_POST, 'phoneNum', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($email)) {
+    $emailErr = "Email address is required";
+  } else {
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  }
+  if (empty($car)) {
+    $carErr = "Please choose a car";
+  } else {
+    $car = filter_input(INPUT_POST, 'car', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
 }
+
+
+// if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
+//   $sql = "INSERT INTO users (firstName, lastName, phoneNum, email, car, cardName, cardNum, cardExpire, cardCCV) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$cardName', '$cardNum', '$cardExpire', '$cardCCV');";
+
+//   if (mysqli_query($connect, $sql)) {
+//     header('Location: index.php');
+//   } else {
+//     echo 'Error: ' . mysqli_error($connect);
+//   }
+// }
 
 ?>
 
@@ -28,32 +64,41 @@ $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
     </div>
     <div class="col-sm-6">
       <div class="col-md-12 order-md-1">
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <form action="" class="needs-validation" method="POST">
           <div class="row">
+
             <div class="col-md-6 mb-3">
               <label for="firstName" class="form-lable">Keresztnév</label>
-              <input type="text" class="form-control <?php echo $firstNameErr ? 'is-invalid' : null; ?>" id="firstName" name="firstName" placeholder="">
-              <div class="invalid-feedback"><?php echo $firstNameErr; ?> </div>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="">
+              <?php if (!empty($firstNameErr)) : ?>
+                <p class="text-danger"><?php echo $firstNameErr; ?></p>
+              <?php endif; ?>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Vezetéknév</label>
-              <input type="text" class="form-control <?php echo $lastNameErr ? 'is-invalid' : null; ?>" id="lastName" name="lastName" placeholder="">
-              <div class="invalid-feedback"><?php echo $lastNameErr; ?></div>
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="">
+              <?php if (!empty($lastNameErr)) : ?>
+                <p class="text-danger"><?php echo $lastNameErr; ?></p>
+              <?php endif; ?>
             </div>
           </div>
 
           <div class="col--12 mb-3">
             <label for="phoneNum">Telefonszám</label>
             <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555">
-              <input type="text" class="form-control <?php echo $phoneNumErr ? 'is-invalid' : null; ?>" id="phoneNum" name="phoneNum" placeholder="Telefonszám">
+              <input type="text" class="form-control" id="phoneNum" name="phoneNum" placeholder="Telefonszám">
             </span>
-            <div class="invalid-feedback" style="width: 100%;"><?php echo $phoneNumErr; ?></div>
+            <?php if (!empty($phoneNumErr)) : ?>
+              <p class="text-danger"><?php echo $phoneNumErr; ?></p>
+            <?php endif; ?>
           </div>
 
           <div class="col--12 mb-3">
             <label for="email">E-mail cím</label>
-            <input type="email" class="form-control <?php echo $emailErr ? 'is-invalid' : null; ?>" id="email" name="email" placeholder="te@pelda.com">
-            <div class="invalid-feedback"><?php echo $emailErr; ?></div>
+            <input type="email" class="form-control" id="email" name="email" placeholder="te@pelda.com">
+            <?php if (!empty($emailErr)) : ?>
+              <p class="text-danger"><?php echo $emailErr; ?></p>
+            <?php endif; ?>
           </div>
 
           <div class="col--12 mb-3">
@@ -63,34 +108,9 @@ $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 <option><?php echo $item['name']; ?></option>
               <?php endforeach; ?>
             </select>
-          </div>
-          <hr class="mb-4">
-
-          <h4 class="mb-3">Fizetés</h4>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cardName">Kártyán lévő név</label>
-              <input type="text" class="form-control <?php echo $cardNameErr ? 'is-invalid' : null; ?>" id="cardName" name="cardName" placeholder="">
-              <small class="text-muted">Teljes név a kártyán</small>
-              <div class="invalid-feedback">Írja be a kártyán lévő nevet.</div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cardNum">Kártyaszám</label>
-              <input type="text" class="form-control <?php echo $cardNumErr ? 'is-invalid' : null; ?>" id="cardNum" name="cardNum" placeholder="">
-              <div class="invalid-feedback"><?php echo $cardNumErr; ?></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="cardExpire">Lejárati dátum</label>
-              <input type="text" class="form-control <?php echo $cardExpireErr ? 'is-invalid' : null; ?>" id="cardExpire" name="cardExpire" placeholder="">
-              <div class="invalid-feedback"><?php echo $cardExpireErr; ?></div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="cardCCV">Biztonsági kód</label>
-              <input type="text" class="form-control <?php echo $cardCCVErr ? 'is-invalid' : null; ?>" id="cardCCV" name="cardCCV" placeholder="">
-              <div class="invalid-feedback"><?php echo $cardCCVErr; ?></div>
-            </div>
+            <?php if (!empty($carErr)) : ?>
+              <p class="text-danger"><?php echo $carErr; ?></p>
+            <?php endif; ?>
           </div>
           <hr class="mb-3">
           <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" name="submit">Vásárlás</button>
