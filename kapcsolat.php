@@ -1,5 +1,71 @@
 <?php include('inc/header.php') ?>
 
+<<<<<<< HEAD
+<?php
+$sql = 'SELECT * FROM cars';
+$result = mysqli_query($connect, $sql);
+$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+$firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
+$firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
+
+//Validate form submit
+if (isset($_POST['submit'])) {
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $phoneNum = $_POST['phoneNum'];
+  $email = $_POST['email'];
+  $car = $_POST['car'];
+  $paymentMethod = null;
+
+  //Validate form fields being filled
+  if (empty($firstName)) {
+    $firstNameErr = "First name is required";
+  } else {
+    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($lastName)) {
+    $lastNameErr = "Last name is required";
+  } else {
+    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($phoneNum)) {
+    $phoneNumErr = "Phone number is required";
+  } else {
+    $phoneNum = filter_input(INPUT_POST, 'phoneNum', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($email)) {
+    $emailErr = "Email address is required";
+  } else {
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  }
+  if (empty($car)) {
+    $carErr = "Please choose a car";
+  } else {
+    $car = filter_input(INPUT_POST, 'car', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($paymentMethod)) {
+    $paymentMethodErr = "Please choose a payment method";
+  } else {
+    $paymentMethod = filter_input(INPUT_POST, 'paymentMethod', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+
+  //SQL send to database
+  if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($paymentMethod)) {
+    $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
+    
+if (mysqli_query($connect, $sendSQL)) {
+  // echo 'New record added successfully';
+} else {
+  echo 'Error' . mysqli_error($connect);
+    }
+mysqli_close($connect);
+  }
+}
+?>
+
+=======
+>>>>>>> main
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-6 justify-content-center align-self-center">
@@ -9,9 +75,28 @@
     </div>
     <div class="col-sm-6">
       <div class="col-md-12 order-md-1">
+<<<<<<< HEAD
+        <form action="" class="needs-validation" method="POST">
+=======
         <form class="needs-validation" novalidate>
+>>>>>>> main
           <div class="row">
+
             <div class="col-md-6 mb-3">
+<<<<<<< HEAD
+              <label for="firstName" class="form-lable">Keresztnév</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="">
+              <?php if (!empty($firstNameErr)) : ?>
+                <p class="text-danger"><?php echo $firstNameErr; ?></p>
+              <?php endif; ?>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Vezetéknév</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="">
+              <?php if (!empty($lastNameErr)) : ?>
+                <p class="text-danger"><?php echo $lastNameErr; ?></p>
+              <?php endif; ?>
+=======
               <label for="firstName">Keresztnév</label>
               <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
@@ -24,10 +109,20 @@
               <div class="invalid-feedback">
                 Adja meg a vezetéknevét.
               </div>
+>>>>>>> main
             </div>
           </div>
 
           <div class="col--12 mb-3">
+<<<<<<< HEAD
+            <label for="phoneNum">Telefonszám</label>
+            <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555">
+              <input type="text" class="form-control" id="phoneNum" name="phoneNum" placeholder="Telefonszám">
+            </span>
+            <?php if (!empty($phoneNumErr)) : ?>
+              <p class="text-danger"><?php echo $phoneNumErr; ?></p>
+            <?php endif; ?>
+=======
             <label for="username">Telefonszám</label>
             <span class="bfh-phone" data-format="+36 (ddd) ddd-dddd" data-number="15555555555"></span>
             <input type="text" class="form-control" id="bfh-phone" placeholder="Telefonszám" required>
@@ -35,10 +130,25 @@
               Adja meg a telefonszámát.
             </div>
 
+>>>>>>> main
           </div>
 
           <div class="col--12 mb-3">
             <label for="email">E-mail cím</label>
+<<<<<<< HEAD
+            <input type="email" class="form-control" id="email" name="email" placeholder="te@pelda.com">
+            <?php if (!empty($emailErr)) : ?>
+              <p class="text-danger"><?php echo $emailErr; ?></p>
+            <?php endif; ?>
+          </div>
+
+          <div class="col--12 mb-3">
+            <label for="car">Kiválasztott termék</label>
+            <select class="form-control" name="car">
+              <?php foreach ($output as $item) : ?>
+                <option><?php echo $item['name']; ?></option>
+              <?php endforeach; ?>
+=======
             <input type="email" class="form-control" id="email" placeholder="te@pelda.com">
             <div class="invalid-feedback">
               Adja meg az e-mail címét.
@@ -64,8 +174,33 @@
               <option>Porsche Macan S (2019)</option>
               <option>Porsche Cayanne (2019)</option>
               <option>Porsche Cayanne E-Hybrid (2019)</option>
+>>>>>>> main
             </select>
+            <?php if (!empty($carErr)) : ?>
+              <p class="text-danger"><?php echo $carErr; ?></p>
+            <?php endif; ?>
           </div>
+<<<<<<< HEAD
+          <hr class="mb-3">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment" value="cash">
+                <label class="form-check-label" for="paymentMethod">
+                  Készpénz
+                </label>
+                <?php if (!empty($paymentMethodErr)) : ?>
+                  <p class="text-danger"><?php echo $paymentMethodErr; ?></p>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card">
+                <label class="form-check-label" for="paymentMethod">
+                  Bankkártya
+                </label>
+=======
           <hr class="mb-4">
 
           <h4 class="mb-3">Fizetési mód</h4>
@@ -110,6 +245,7 @@
               <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
               <div class="invalid-feedback">
                 Írja be a biztonsági kódot.
+>>>>>>> main
               </div>
             </div>
           </div>
