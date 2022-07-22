@@ -48,17 +48,16 @@ if (isset($_POST['submit'])) {
   }
 }
 
+//SQL send to database
+$sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
 
-// if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($cardName) && empty($cardNum) && empty($cardExpire) && empty($cardCCV)) {
-//   $sql = "INSERT INTO users (firstName, lastName, phoneNum, email, car, cardName, cardNum, cardExpire, cardCCV) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$cardName', '$cardNum', '$cardExpire', '$cardCCV');";
+if (mysqli_query($connect, $sendSQL)) {
+  echo 'New record added successfully';
+} else {
+  echo 'Error' . mysqli_error($connect);
+}
 
-//   if (mysqli_query($connect, $sql)) {
-//     header('Location: index.php');
-//   } else {
-//     echo 'Error: ' . mysqli_error($connect);
-//   }
-// }
-
+mysqli_close($connect);
 ?>
 
 <div class="container-fluid">
