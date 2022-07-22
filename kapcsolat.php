@@ -5,8 +5,8 @@ $sql = 'SELECT * FROM cars';
 $result = mysqli_query($connect, $sql);
 $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-$firstName = $lastName = $phoneNum = $email = $car = '';
-$firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = '';
+$firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
+$firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
 
 if (isset($_POST['submit'])) {
   $firstName = $_POST['firstName'];
@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
   $phoneNum = $_POST['phoneNum'];
   $email = $_POST['email'];
   $car = $_POST['car'];
+  $paymentMethod = null;
 
   if (empty($firstName)) {
     $firstNameErr = "First name is required";
@@ -39,6 +40,11 @@ if (isset($_POST['submit'])) {
     $carErr = "Please choose a car";
   } else {
     $car = filter_input(INPUT_POST, 'car', FILTER_SANITIZE_SPECIAL_CHARS);
+  }
+  if (empty($paymentMethod)) {
+    $paymentMethodErr = "Please choose a payment method";
+  } else {
+    $paymentMethod = filter_input(INPUT_POST, 'paymentMethod', FILTER_SANITIZE_SPECIAL_CHARS);
   }
 }
 
@@ -111,6 +117,28 @@ if (isset($_POST['submit'])) {
             <?php if (!empty($carErr)) : ?>
               <p class="text-danger"><?php echo $carErr; ?></p>
             <?php endif; ?>
+          </div>
+          <hr class="mb-3">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment" value="cash">
+                <label class="form-check-label" for="paymentMethod">
+                  Készpénz
+                </label>
+                <?php if (!empty($paymentMethodErr)) : ?>
+                  <p class="text-danger"><?php echo $paymentMethodErr; ?></p>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card">
+                <label class="form-check-label" for="paymentMethod">
+                  Bankkártya
+                </label>
+              </div>
+            </div>
           </div>
           <hr class="mb-3">
           <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" name="submit">Vásárlás</button>
