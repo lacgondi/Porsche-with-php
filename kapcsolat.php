@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
     $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
     
 if (mysqli_query($connect, $sendSQL)) {
-  echo 'New record added successfully';
+  // echo 'New record added successfully';
 } else {
   echo 'Error' . mysqli_error($connect);
     }
