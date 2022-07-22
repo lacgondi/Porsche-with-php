@@ -1,6 +1,10 @@
 <?php include('inc/header.php') ?>
 
 <?php
+$sql = 'SELECT * FROM cars';
+$result = mysqli_query($connect, $sql);
+$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 $firstName = $lastName = $phoneNum = $email = $car = $cardName = $cardNum = $cardExpire = $cardCCV = '';
 $firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $cardNameErr = $cardNumErr = $cardExpireErr = $cardCCVErr = '';
 
@@ -105,22 +109,9 @@ if (isset($_POST['submit'])) {
           <div class="col--12 mb-3">
             <label for="car">Kiválasztott termék</label>
             <select class="form-control" name="car">
-              <option>Porsche 911 Carrera S (2019)</option>
-              <option>Porsche 911 Targa 4</option>
-              <option>Porsche 911 Turbo Cabriolet</option>
-              <option>Porsche 911 GT2 RS</option>
-              <option>Porsche 718 Cayman S</option>
-              <option>Porsche 718 Boxster</option>
-              <option>Porsche 718 T Cayman</option>
-              <option>Porsche 718 Boxster GTS</option>
-              <option>Porsche Panamera 4</option>
-              <option>Panamera GTS Sport Turismo</option>
-              <option>Porsche Panamera Turbo Executive</option>
-              <option>Porsche Panamera 4 E-Hybrid</option>
-              <option>Porsche Macan (2019)</option>
-              <option>Porsche Macan S (2019)</option>
-              <option>Porsche Cayanne (2019)</option>
-              <option>Porsche Cayanne E-Hybrid (2019)</option>
+              <?php foreach ($output as $item) : ?>
+                <option><?php echo $item['name']; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
           <hr class="mb-4">
