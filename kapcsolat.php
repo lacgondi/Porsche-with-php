@@ -143,35 +143,12 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
           <hr class="mb-3">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="">Vásárlás</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" data-toggle="modal" data-target="#orderConfirm">Vásárlás</button>
         </form>
       </div>
     </div>
   </div>
+  <?php include('inc/footer.php') ?>
+  </body>
 
-  <!-- modal -->
-  <div class="modal fade" id="orderConfirm" tabindex="-1" role="dialog" aria-labelledby="orderConfirmLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="orderConfirmLabel">Order successful</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Your order is successful. We will get back to you with the paperwork shortly.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">OK</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<?php include('inc/footer.php') ?>
-</body>
-
-</html>
+  </html>
