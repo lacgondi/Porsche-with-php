@@ -1,6 +1,7 @@
 <?php include('inc/header.php') ?>
 
 <?php
+//sql fetch data from database
 $sql = 'SELECT * FROM cars';
 $result = mysqli_query($connect, $sql);
 $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -55,6 +56,7 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_query($connect, $sendSQL)) {
       // echo 'New record added successfully';
+      header('Location: /popup.php');
     } else {
       echo 'Error' . mysqli_error($connect);
     }
