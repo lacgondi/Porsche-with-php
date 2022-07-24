@@ -1,10 +1,6 @@
 <?php include('inc/header.php'); ?>
 
 <?php
-$sql = 'SELECT * FROM cars';
-$result = mysqli_query($connect, $sql);
-$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 $counter = 0;
 $catArr = [
     1 => 'Porsche 911',
@@ -22,7 +18,7 @@ $catArr = [
         <?php if ($i == 0 || $i - 1 != 0 && $i % 4 == 0) : ?>
             <h3 class="h3"><?php echo $catArr[$output[$i]['type']]; ?></h3>
             <div class="row">
-        <?php endif; ?>
+            <?php endif; ?>
             <div class="col-md-3 col-sm-6" id="product_card">
                 <div class="product-grid9">
                     <div class="product-image9">
@@ -45,7 +41,8 @@ $catArr = [
                     </div>
                 </div>
             </div>
-        <?php if ($i % 4 == 3) :  //actual math genius?>
+            <?php if ($i % 4 == 3) :  //actual math genius
+            ?>
             </div>
         <?php endif; ?>
     <?php endfor; ?>

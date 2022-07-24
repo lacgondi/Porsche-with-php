@@ -1,11 +1,6 @@
 <?php include('inc/header.php') ?>
 
 <?php
-//sql fetch data from database
-$sql = 'SELECT * FROM cars';
-$result = mysqli_query($connect, $sql);
-$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 $firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
 $firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
 
@@ -51,16 +46,16 @@ if (isset($_POST['submit'])) {
   }
 
   //SQL send to database
-  if (empty($firstName) && empty($lastName) && empty($phoneNum) && empty($email) && empty($car) && empty($paymentMethod)) {
+  if (!empty($firstName) && !empty($lastName) && !empty($phoneNum) && !empty($email) && !empty($car) && !empty($paymentMethod)) {
     $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
 
-    if (mysqli_query($connect, $sendSQL)) {
+    if ($connect->query() == true) {
       // echo 'New record added successfully';
       header('Location: /popup.php');
     } else {
       echo 'Error' . mysqli_error($connect);
     }
-    mysqli_close($connect);
+    // mysqli_close($connect);
   }
 }
 ?>
@@ -74,7 +69,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="col-sm-6">
       <div class="col-md-12 order-md-1">
-        <form action="" class="needs-validation" method="POST">
+        <form enctype="multipart/form-data" action="" class="needs-validation" method="POST">
           <div class="row">
 
             <div class="col-md-6 mb-3">
@@ -145,12 +140,13 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
           <hr class="mb-3">
-          <button class="btn btn-primary btn-lg btn-block" type="submit" data-toggle="modal" data-target="#orderConfirm">Vásárlás</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit" name="submit">Vásárlás</button>
         </form>
       </div>
     </div>
   </div>
-  <?php include('inc/footer.php') ?>
-  </body>
+</div>
+<?php include('inc/footer.php') ?>
+</body>
 
-  </html>
+</html>
