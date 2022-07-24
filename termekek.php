@@ -14,6 +14,7 @@ $catArr = [
 ];
 
 session_start();
+$_SESSION['car'] = 0;
 ?>
 
 <div class="container-fluid" style="margin-top:50px">
@@ -43,8 +44,7 @@ session_start();
                     <div class="product-content">
                         <h3 class="title"><?php echo $output[$i]['name'] ?></h3>
                         <div class="price"><?php echo $output[$i]['price'] ?> EUR</div>
-                        <a class="add-to-cart" href="kapcsolat.php" onclick="getName();">Vásárlás</a>
-
+                        <a class="add-to-cart" href="kapcsolat.php" onclick="getName(<?php echo $i + 1 ?>);" name="clickLink">Vásárlás</a>
                     </div>
                 </div>
             </div>
@@ -60,9 +60,9 @@ session_start();
 
 </body>
 <script type="text/javascript">
-    function getName() {
-        const value = document.getElementsByClassName("title")[0].innerHTML;
-        sessionStorage.setItem('car', value);
+    function getName(index) {
+        console.log(index);
+        document.cookie = "carName=" + index + "; path=/";
     }
 </script>
 
