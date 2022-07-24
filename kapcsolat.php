@@ -4,6 +4,9 @@
 $firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
 $firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
 
+session_start();
+$_SESSION['carIndex'] = $_COOKIE['carName'];
+
 //Validate form submit
 if (isset($_POST['submit'])) {
   $firstName = $_POST['firstName'];
@@ -72,7 +75,6 @@ VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMetho
       <div class="col-md-12 order-md-1">
         <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="needs-validation" enctype="multipart/form-data" method="POST">
           <div class="row">
-
             <div class="col-md-6 mb-3">
               <label for="firstName" class="form-lable">Keresztnév</label>
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="">
@@ -111,6 +113,9 @@ VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMetho
             <label for="car">Kiválasztott termék</label>
             <select class="form-control" name="car">
               <?php foreach ($output as $item) : ?>
+                <?php if ($_SESSION['carIndex'] == $item['index']) : ?>
+                  <option selected><?php echo $item['name']; ?></option>
+                <?php endif; ?>
                 <option><?php echo $item['name']; ?></option>
               <?php endforeach; ?>
             </select>
