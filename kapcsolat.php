@@ -8,6 +8,9 @@ $output = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $firstName = $lastName = $phoneNum = $email = $car = $paymentMethod = '';
 $firstNameErr = $lastNameErr = $phoneNumErr = $emailErr = $carErr = $paymentMethodErr = '';
 
+session_start();
+$_SESSION['carIndex'] = $_COOKIE['carName'];
+
 //Validate form submit
 if (isset($_POST['submit'])) {
   $firstName = $_POST['firstName'];
@@ -74,7 +77,6 @@ if (isset($_POST['submit'])) {
       <div class="col-md-12 order-md-1">
         <form action="" class="needs-validation" method="POST">
           <div class="row">
-
             <div class="col-md-6 mb-3">
               <label for="firstName" class="form-lable">Keresztnév</label>
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="">
@@ -113,6 +115,9 @@ if (isset($_POST['submit'])) {
             <label for="car">Kiválasztott termék</label>
             <select class="form-control" name="car">
               <?php foreach ($output as $item) : ?>
+                <?php if ($_SESSION['carIndex'] == $item['index']) : ?>
+                  <option selected><?php echo $item['name']; ?></option>
+                <?php endif; ?>
                 <option><?php echo $item['name']; ?></option>
               <?php endforeach; ?>
             </select>
