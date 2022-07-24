@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="orderConfirmLabel">Order successful</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="home">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="home();">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -13,7 +13,7 @@
                 Your order is successful. We will get back to you with the paperwork shortly.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="home">OK</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="home();">OK</button>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     let myModal = new bootstrap.Modal(document.getElementById('orderConfirm'), {});
     myModal.show();
 
-    document.getElementById("home").onclick = function() {
-        window.location.replace("index.php");
-    };
+    function home() {
+        window.location.replace("/index.php");
+    }
 </script>
