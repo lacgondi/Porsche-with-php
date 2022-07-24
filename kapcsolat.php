@@ -42,20 +42,21 @@ if (isset($_POST['submit'])) {
   if (empty($paymentMethod)) {
     $paymentMethodErr = "Please choose a payment method";
   } else {
-    $paymentMethod = filter_input(INPUT_POST, 'paymentMethod', FILTER_SANITIZE_SPECIAL_CHARS);
+    $paymentMethod = $_POST['paymentMethod'];
   }
 
-  //SQL send to database
-  if (!empty($firstName) && !empty($lastName) && !empty($phoneNum) && !empty($email) && !empty($car) && !empty($paymentMethod)) {
-    $sendSQL = "INSERT INTO `users`(`firstName`, `lastName`, `phoneNum`, `email`, `car`, `paymentMethod`) VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
+  //Validate data before pushing to database
+  if (!empty($firstName) and !empty($lastName) and !empty($phoneNum) and !empty($email) and !empty($car)) {
+    //SQL send to database
+    $sqlPush = "INSERT INTO users (firstName, lastName, phoneNum, email, car, paymentMethod)
+VALUES ('$firstName', '$lastName', '$phoneNum', '$email', '$car', '$paymentMethod')";
 
-    if ($connect->query() == true) {
-      // echo 'New record added successfully';
-      header('Location: /popup.php');
+    if (mysqli_query($connect, $sqlPush)) {
+      echo "New record created successfully";
+      header('Location: popup.php');
     } else {
-      echo 'Error' . mysqli_error($connect);
+      echo "Error: " . $sqlPush . "<br>" . mysqli_error($connect);
     }
-    // mysqli_close($connect);
   }
 }
 ?>
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="col-sm-6">
       <div class="col-md-12 order-md-1">
-        <form enctype="multipart/form-data" action="" class="needs-validation" method="POST">
+        <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="needs-validation" enctype="multipart/form-data" method="POST">
           <div class="row">
 
             <div class="col-md-6 mb-3">
@@ -121,7 +122,7 @@ if (isset($_POST['submit'])) {
           <div class="row">
             <div class="col-md-6 col-sm-12 mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment" value="cash">
+                <input class="form-check-input" type="radio" name="paymentMethod" value="cash">
                 <label class="form-check-label" for="paymentMethod">
                   Készpénz
                 </label>
@@ -132,7 +133,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-6 col-sm-12 mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" value="card">
+                <input class="form-check-input" type="radio" name="paymentMethod" value="card">
                 <label class="form-check-label" for="paymentMethod">
                   Bankkártya
                 </label>
