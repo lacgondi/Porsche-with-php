@@ -1,10 +1,6 @@
 <?php include('inc/header.php'); ?>
 
 <?php
-$sql = 'SELECT * FROM cars';
-$result = mysqli_query($connect, $sql);
-$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 $counter = 0;
 $catArr = [
     1 => 'Porsche 911',
@@ -48,8 +44,12 @@ $_SESSION['car'] = 0;
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+            <?php if ($i % 4 == 3) :  //actual math genius ?>
+=======
             <?php if ($i % 4 == 3) :  //actual math genius
             ?>
+>>>>>>> main
             </div>
         <?php endif; ?>
     <?php endfor; ?>

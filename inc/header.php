@@ -1,5 +1,11 @@
 <?php include('config/database.php'); ?>
 
+<?php
+$sql = 'SELECT * FROM cars';
+$result = mysqli_query($connect, $sql);
+$output = mysqli_fetch_all($result, MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
 
