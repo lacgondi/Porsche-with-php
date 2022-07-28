@@ -44,20 +44,12 @@ $_SESSION['car'] = 0;
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <?php if ($i % 4 == 3) :  //actual math genius ?>
-=======
-            <?php if ($i % 4 == 3) :  //actual math genius
-            ?>
->>>>>>> main
+            <?php if ($i % 4 == 3) : ?>
             </div>
         <?php endif; ?>
     <?php endfor; ?>
-
 </div>
-
 <?php include('inc/footer.php'); ?>
-
 </body>
 <script type="text/javascript">
     function getName(index) {
